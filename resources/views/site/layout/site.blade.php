@@ -117,11 +117,6 @@
 
     {!! isset($information['messenger']) ? $information['messenger'] : '' !!}
 
-    <style>
-        .fb_dialog.fb_dialog_advanced {
-            bottom: 200px;
-        }
-    </style>
     <script type="text/javascript">
         var NN_FRAMEWORK = NN_FRAMEWORK || {};
         var CONFIG_BASE = '';
