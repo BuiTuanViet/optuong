@@ -80,7 +80,7 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <form action="{{ route('update_setting_face') }}" method="post">
+                                    <form action="{{ route('update_setting_face') }}" method="POST"  enctype="multipart/form-data">
                                         {!! csrf_field() !!}
                                         <div class="form-group col-xs-12 ">
                                             <label>Mã truy cập</label>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="box-body">
                             <label>Chọn những group bạn đã tham gia: </label>
-                            <form action="{{ route('update_groups') }}" method="post">
+                            <form action="{{ route('update_groups') }}" method="POST"  enctype="multipart/form-data">
                                 {!! csrf_field() !!}
                                 <div class="formGroupsFacebook" >
                                     @foreach ($groups as $group)
@@ -165,7 +165,7 @@
                             <p><i>Lấy thông tin từ trang cá nhân và fanpage bạn quan tâm</i></p>
                         </div>
                         <div class="box-body">
-                            <form action="{{ route('update_facebook_id') }}" method="post">
+                            <form action="{{ route('update_facebook_id') }}" method="POST"  enctype="multipart/form-data">
                                 {!! csrf_field() !!}
                                 <div class="form-group col-xs-12 ">
                                     <label>Nhập vào ID facebook</label>

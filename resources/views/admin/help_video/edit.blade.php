@@ -18,7 +18,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('help-video.update', ['help_video_id' => $helpVideo->help_video_id]) }}" method="POST">
+            <form role="form" action="{{ route('help-video.update', ['help_video_id' => $helpVideo->help_video_id]) }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="col-xs-12 col-md-6">
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
+                                <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
                                        size="20"/>
                                 <img src="{{ $theme->image }}" width="80" height="70"/>
                                 <input name="image" type="hidden" value="{{ $theme->image }}"/>

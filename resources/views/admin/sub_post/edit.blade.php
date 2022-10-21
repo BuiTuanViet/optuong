@@ -18,7 +18,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('sub-posts.update', ['sub_post_id' => $subPost->sub_post_id, 'typePost' => $typePost]) }}" method="POST">
+            <form role="form" action="{{ route('sub-posts.update', ['sub_post_id' => $subPost->sub_post_id, 'typePost' => $typePost]) }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="col-xs-12 col-md-8">
@@ -56,10 +56,9 @@
                             @endif
                             @if (in_array('image', explode(',', $typeSubPost->input_default_used)))
                             <div class="form-group">
-                                <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
+                                <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
                                        size="20"/>
                                 <img src="{{ $post->image }}" width="80" height="70"/>
-                                <input name="image" type="hidden" value="{{ $post->image }}"/>
                             </div>
                             @endif
                             <div class="form-group" style="color: red;">
@@ -108,7 +107,7 @@
                                     @endif
 
                                     @if($typeInput->type_input == 'image')
-                                        <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
+                                        <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
                                                size="20"/>
                                         <img src="{{ $post[$typeInput->slug] }}" width="80" height="70"/>
                                         <input name="{{$typeInput->slug}}" type="hidden" value="{{ $post[$typeInput->slug] }}"/>

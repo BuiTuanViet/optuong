@@ -18,7 +18,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('group-help-video.update', ['group_id' => $groupHelpVideo->group_id]) }}" method="POST">
+            <form role="form" action="{{ route('group-help-video.update', ['group_id' => $groupHelpVideo->group_id]) }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="col-xs-12 col-md-6">

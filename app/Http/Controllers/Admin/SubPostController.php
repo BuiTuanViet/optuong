@@ -102,14 +102,18 @@ class SubPostController extends AdminController
 
             // insert to database
             $post = new Post();
-            $postId = $post->insertGetId([
+            $data = [
                 'title' => $request->input('title'),
                 'post_type' => $typePost,
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
-                'image' =>  $request->input('image'),
                 'content' =>  $request->input('content'),
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+
+            $postId = $post->insertGetId($data);
 
             // insert slug
             $postWithSlug = $post->where('slug', $slug)->first();
@@ -225,14 +229,18 @@ class SubPostController extends AdminController
             }
             // update to database
             // lấy ra danh mục cha
-            $post->update([
+            $data = [
                 'title' => $request->input('title'),
                 'post_type' => $typePost,
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
-                'image' =>  $request->input('image'),
                 'content' =>  $request->input('content'),
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+
+            $post->update($data);
 
             // insert slug
             $postWithSlug = Post::where('slug', $slug)

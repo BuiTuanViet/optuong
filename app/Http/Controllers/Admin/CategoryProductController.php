@@ -92,15 +92,18 @@ class CategoryProductController extends AdminController
     private function createCategory ($request, $slug) {
         try {
             $category = new Category();
-            $cateId = $category->insertGetId([
+            $data = [
                 'title' => $request->input('title'),
                 'slug' => $slug,
                 'parent' => $request->input('parent'),
                 'post_type' => 'product',
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
-                'image' =>  $request->input('image'),
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+            $cateId = $category->insertGetId($data);
 
             // insert input
             $typeInputDatabase = TypeInput::orderBy('type_input_id')
@@ -202,15 +205,18 @@ class CategoryProductController extends AdminController
 
     private function updateCategory($category, $request, $slug) {
         try {
-            $category->update([
+            $data = [
                 'title' => $request->input('title'),
                 'slug' => $slug,
                 'parent' => $request->input('parent'),
                 'post_type' => 'product',
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
-                'image' =>  $request->input('image'),
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+            $category->update($data);
 
             // insert input
             $typeInputDatabase = TypeInput::orderBy('type_input_id')

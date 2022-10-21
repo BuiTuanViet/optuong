@@ -85,12 +85,16 @@ class MenuController extends AdminController
             }
             // insert to database
             $menu = new Menu();
-            $menu->insert([
+            $data =[
                 'title' => $request->input('title'),
                 'slug' => $slug,
-                'image' => $request->input('image'),
                 'location' => $request->input('location'),
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+
+            $menu->insert($data);
         } catch (\Exception $e) {
             Error::setErrorMessage('Lỗi xảy ra khi thêm mới menu: dữ liệu hợp lệ.');
             Log::error('http->admin->MenuController->store: Lỗi xảy tra trong quá trình thêm mới menu');
@@ -256,12 +260,15 @@ class MenuController extends AdminController
                 $slug = Ultility::createSlug($request->input('title'));
             }
             // insert to database
-            $menu->update([
+            $data =[
                 'title' => $request->input('title'),
                 'slug' => $slug,
-                'image' =>  $request->input('image'),
-                'location' =>  $request->input('location'),
-            ]);
+                'location' => $request->input('location'),
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+            $menu->update($data);
 
             $menuElement = new MenuElement();
             $menuElement->updateMenuElement(

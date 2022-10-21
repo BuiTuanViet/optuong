@@ -44,7 +44,7 @@
 
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('randomCommentFromForm') }}" method="POST">
+            <form role="form" action="{{ route('randomCommentFromForm') }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 <div class="col-xs-12 col-md-6">
 

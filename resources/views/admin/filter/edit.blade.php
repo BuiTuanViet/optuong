@@ -18,7 +18,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('filter.update', ['group_filter_id' => $filterGroup->group_filter_id]) }}" method="POST">
+            <form role="form" action="{{ route('filter.update', ['group_filter_id' => $filterGroup->group_filter_id]) }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <section class="content">

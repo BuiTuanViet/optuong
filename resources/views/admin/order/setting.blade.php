@@ -75,7 +75,7 @@
 {{--                                    <!-- /.box-body -->--}}
 {{--                                    <div class="box-body">--}}
 {{--                                        <h4 class="box-title">Thêm mới phí ship</h4>--}}
-{{--                                        <form action="{{ route('cost_ship') }}" method="post">--}}
+{{--                                        <form action="{{ route('cost_ship') }}" method="POST"  enctype="multipart/form-data">--}}
 {{--                                            {!! csrf_field() !!}--}}
 {{--                                            <div class="form-group">--}}
 {{--                                                <label>Hình thức ship</label>--}}
@@ -147,7 +147,7 @@
 
                                     <div class="box-body">
                                         <h4 class="box-title">Thêm mới ngân hàng</h4>
-                                        <form action="{{ route('bank') }}" method="post">
+                                        <form action="{{ route('bank') }}" method="POST"  enctype="multipart/form-data">
                                             {!! csrf_field() !!}
                                             <div class="form-group">
                                                 <label>Tên ngân hàng</label>
@@ -186,7 +186,7 @@
                                     {{--<!-- /.box-header -->--}}
 
                                     {{--<div class="box-body">--}}
-                                        {{--<form action="{{ route('updateSetting') }}" method="post">--}}
+                                        {{--<form action="{{ route('updateSetting') }}" method="POST"  enctype="multipart/form-data">--}}
                                             {{--{!! csrf_field() !!}--}}
                                             {{--<div class="form-group">--}}
                                                 {{--<label>Một điểm tương ứng bao nhiêu tiền</label>--}}
@@ -265,7 +265,7 @@
 
                                     {{--<div class="box-body">--}}
                                         {{--<h4 class="box-title">Thêm mới mã giảm giá</h4>--}}
-                                        {{--<form action="{{ route('code_sale') }}" method="post">--}}
+                                        {{--<form action="{{ route('code_sale') }}" method="POST"  enctype="multipart/form-data">--}}
                                             {{--{!! csrf_field() !!}--}}
                                             {{--<div class="form-group">--}}
                                                 {{--<label>Mã giảm giá</label>--}}
@@ -317,7 +317,7 @@
                                     <!-- /.box-header -->
 
                                     <div class="box-body">
-                                        <form action="{{ route('updateSettingGetFly') }}" method="post">
+                                        <form action="{{ route('updateSettingGetFly') }}" method="POST"  enctype="multipart/form-data">
                                             {!! csrf_field() !!}
                                             <div class="form-group">
                                                 <label>api key</label>
@@ -364,7 +364,7 @@
                                         </div>
                                     </div>
                                     <div class="box-body {{ ($settingEmail->method == 1) ? 'hide' : ''  }}" id="smtp"   >
-                                        <form action="{{ route('updateSettingEmail') }}" method="post">
+                                        <form action="{{ route('updateSettingEmail') }}" method="POST"  enctype="multipart/form-data">
                                             {!! csrf_field() !!}
                                             <input type="hidden" value="0" name="method"/>
                                             <div class="row">
@@ -431,7 +431,7 @@
                                     </div>
 
                                     <div class="box-body {{ ($settingEmail->method == 0) ? 'hide' : ''  }}" id="api" >
-                                        <form action="{{ route('updateSettingEmail') }}" method="post">
+                                        <form action="{{ route('updateSettingEmail') }}" method="POST"  enctype="multipart/form-data">
                                             {!! csrf_field() !!}
                                             <input type="hidden" value="1" name="method"/>
                                             <div class="row">
@@ -499,7 +499,7 @@
                         <div class="row">
                             <div class="box-body">
                                 <div class="col-xs-12 col-md-6">
-                                    <form action="{{ route('testEmail') }}" method="post">
+                                    <form action="{{ route('testEmail') }}" method="POST"  enctype="multipart/form-data">
                                         {!! csrf_field() !!}
                                         <div class="form-group">
                                             <label>Kiểm tra cấu hình email</label>

@@ -6,6 +6,7 @@ use App\Entity\InformationGeneral;
 use App\Entity\TypeInformation;
 use App\Entity\User;
 use App\Ultility\Error;
+use App\Ultility\Ultility;
 use Illuminate\Http\Request;
 use App\Entity\Information;
 use Illuminate\Support\Facades\Auth;
@@ -104,6 +105,7 @@ class InformationController extends AdminController
         try {
             $slugTypeInputs = $request->input('slug_type_input');
             $contents = $request->input('content');
+            // lưu các type không phải ảnh
             foreach($slugTypeInputs as  $id => $slugTypeInput) {
                 $content = $contents[$id];
                 $information = Information::where('slug_type_input', $slugTypeInput)->first();
@@ -120,6 +122,24 @@ class InformationController extends AdminController
                 //update information
                 $information->update([
                     'content' => $content,
+                ]);
+            }
+            // Lưu ảnh
+            foreach($request->image as  $id => $image) {
+                $information = Information::where('slug_type_input', $id)->first();
+                // insert information
+                if (empty($information)) {
+                    $information = new Information();
+                    $information->insert([
+                        'slug_type_input' => $slugTypeInput,
+                        'content' => Ultility::saveFileInformation($image),
+                    ]);
+
+                    continue;
+                }
+                //update information
+                $information->update([
+                    'content' => Ultility::saveFileInformation($image),
                 ]);
             }
 
