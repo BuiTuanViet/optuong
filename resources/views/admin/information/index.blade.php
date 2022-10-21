@@ -54,7 +54,7 @@
 
                                     @if ($typeinformation->type_input == 'image')
                                         <div>
-                                            <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                            <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                                    size="20"/>
                                             <img src="{{ $typeinformation->information }}" width="80" height="70"/>
                                             <input name="content[]" type="hidden"

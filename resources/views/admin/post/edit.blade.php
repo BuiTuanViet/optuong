@@ -70,7 +70,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                            <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                                    size="20"/>
                                             <img src="{{ $post->image }}" width="80" height="70"/>
                                             <input name="image" type="hidden" value="{{ $post->image }}"/>
@@ -154,7 +154,7 @@
                                                 @endif
 
                                                 @if($typeInput->type_input == 'image')
-                                                    <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                                    <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                                            size="20"/>
                                                     <img src="{{ $post[$typeInput->slug] }}" width="80" height="70"/>
                                                     <input name="{{$typeInput->slug}}" type="hidden" value="{{ $post[$typeInput->slug] }}"/>

@@ -289,6 +289,8 @@ class ProductController extends AdminController
      */
     public function update(Request $request, Product $product)
     {
+       dd($request->all());
+
         try {
             DB::beginTransaction();
             $postExist = Post::where('post_id', $product->post_id)->exists();

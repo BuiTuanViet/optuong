@@ -53,7 +53,7 @@
 
 
                                 <div class="form-group">
-                                    <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                    <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                            size="20"/>
                                     <img src="" width="80" height="70"/>
                                     <input name="image" type="hidden" value=""/>

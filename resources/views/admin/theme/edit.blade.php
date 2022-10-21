@@ -78,14 +78,14 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                        size="20"/>
                                 <img src="{{ $theme->image }}" width="80" height="70"/>
                                 <input name="image" type="hidden" value="{{ $theme->image }}"/>
                             </div>
 
                             <div class="form-group">
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh hiển thị điên thoại"
+                                <input type="file" onChange="loadFile(this);" value="Chọn ảnh hiển thị điên thoại"
                                        size="20"/>
                                 <img src="{{ $theme->image_phone }}" width="80" height="70"/>
                                 <input name="image_phone" type="hidden" value="{{ $theme->image_phone }}"/>

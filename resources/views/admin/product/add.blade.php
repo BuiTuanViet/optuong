@@ -59,7 +59,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                <input type="file"  value="Chọn ảnh"
                                        size="20"/>
                                 <img src="" width="80" height="70"/>
                                 <input name="image" type="hidden" value=""/>
@@ -206,7 +206,7 @@
 		
                             <div class="form-group">
                                 <label>Danh sách hình ảnh</label>
-                                <input type="button" onclick="return openKCFinder(this);" value="Chọn ảnh"
+                                <input type="file" onChange="return openKCFinder(this);" multiple  value="Chọn ảnh"
                                        size="20"/>
                                 <div class="imageList">
                                 </div>
@@ -259,7 +259,7 @@
                                 @endif
 
                                 @if($typeInput->type_input == 'image')
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                        size="20"/>
                                 <img src="" width="80" height="70"/>
                                 <input name="{{$typeInput->slug}}" type="hidden" value=""/>

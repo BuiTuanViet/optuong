@@ -59,7 +59,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                        size="20"/>
                                 <img src="{{ $post->image }}" width="80" height="70"/>
                                 <input name="image" type="hidden" value="{{ $post->image }}"/>
@@ -208,8 +208,8 @@
 
                             <div class="form-group">
                                 <label>Danh sách hình ảnh</label>
-                                <input type="button" onclick="return openKCFinder(this);" value="Chọn ảnh"
-                                       size="20"/>
+                                <input type="file" name="image_list[]" value="Chọn ảnh"
+                                       size="20" multiple />
                                 <div class="imageList">
                                     @if(!empty($product->image_list))
                                         @foreach(explode(',',$product->image_list) as $image)
@@ -217,7 +217,7 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <input name="image_list" type="hidden" value="{{$product->image_list}}"/>
+{{--                                <input name="image_list" type="hidden" value="{{$product->image_list}}"/>--}}
                             </div>
 
                         </div>
@@ -240,7 +240,7 @@
                                     @endif
 
                                     @if($typeInput->type_input == 'image')
-                                        <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                        <input type="file" onChange="loadFile(this);" value="Chọn ảnh"
                                                size="20"/>
                                         <img src="{{ $post[$typeInput->slug] }}" width="80" height="70"/>
                                         <input name="{{$typeInput->slug}}" type="hidden" value="{{ $post[$typeInput->slug] }}"/>
