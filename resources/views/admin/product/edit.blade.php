@@ -207,7 +207,7 @@
 
                             <div class="form-group">
                                 <label>Danh sách hình ảnh</label>
-                                <input type="file" name="image_list[]" value="Chọn ảnh" accept="image/*"
+                                <input type="file" name="image_list[]" sub="multiple"  value="Chọn ảnh" accept="image/*"
                                        size="20" multiple />
                                 <div class="imageList">
                                     @if(!empty($product->image_list))

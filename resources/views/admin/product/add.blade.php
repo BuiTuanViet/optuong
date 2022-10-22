@@ -206,7 +206,7 @@
 		
                             <div class="form-group">
                                 <label>Danh sách hình ảnh</label>
-                                <input type="file" name="image_list[]" value="Chọn ảnh" accept="image/*"
+                                <input type="file" name="image_list[]" sub="multiple"  value="Chọn ảnh" accept="image/*"
                                        size="20" multiple />
                                 <div class="imageList">
                                 </div>
@@ -258,10 +258,10 @@
                                 @endif
 
                                 @if($typeInput->type_input == 'image')
-                                <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
+                                <input type="file" name="{{$typeInput->slug}}" accept="image/*"  value="Chọn ảnh"
                                        size="20"/>
                                 <img src="" width="80" height="70"/>
-                                <input name="{{$typeInput->slug}}" type="hidden" value=""/>
+{{--                                <input name="{{$typeInput->slug}}" type="hidden" value=""/>--}}
                                 @endif
                                 
                                 @if($typeInput->type_input == 'editor')

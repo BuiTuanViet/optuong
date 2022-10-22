@@ -54,7 +54,7 @@
 
                                     @if ($typeinformation->type_input == 'image')
                                         <div>
-                                            <input type="file" name="image[{{$typeinformation->slug}}]" accept="image/*"
+                                            <input type="file" sub="image" name="image[{{$typeinformation->slug}}]" accept="image/*"
                                                    size="20"/>
                                             <img src="{{ $typeinformation->information }}" width="80" height="70"/>
 {{--                                            <input name="content[]" type="hidden"--}}

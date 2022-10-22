@@ -162,54 +162,51 @@
     });
     
 
-    function loadFile(e) {
+    $('input[type=file][name=image]').on('change', function () {
+        let url = URL.createObjectURL(event.target.files[0]) ;
+        var img = new Image();
+        img.src = url;
+        console.log(url, img)
 
-        // var output = document.getElementById('output');
-        // output.src = URL.createObjectURL(event.target.files[0]);
-        // output.onload = function() {
-        //     URL.revokeObjectURL(output.src) // free memory
-        // }
-        // window.KCFinder = {
-        //    callBack: function(url) {window.KCFinder = null;
-        // let url = URL.createObjectURL(event.target.files[0]) ;
-        //
-        // var img = new Image();
-        // img.src = url;
-        //
-        // $(e).next().attr("src",url);
-        // $(e).next().next().val(url);
-        //     }
-        // };
-        // window.open('/kcfinder-master/browse.php?type=images&dir=images/public',
-        //     'kcfinder_image', 'status=0, toolbar=0, location=0, menubar=0, ' +
-        //     'directories=0, resizable=1, scrollbars=0, width=800, height=600'
-        // );
+        $(this).next().attr("src",url);
+        $(this).next().next().val(url);
+    })
 
-    }
-    function openKCFinder(e) {
-        // window.KCFinder = {
-        //     callBackMultiple: function(files) {
-        //         window.KCFinder = null;
-        //         var urlFiles = "";
-        // let url = URL.createObjectURL(event.target.files) ;
-        // console.log(url)
-                // $(e).next().empty();
-                // for (var i = 0; i < files.length; i++){
-                //     $(e).next().append('<img src="'+ files[i] +'" width="80" height="70" style="margin-left: 5px; margin-bottom: 5px;"/>')
-                //     urlFiles += files[i] ;
-                //     if (i < (files.length - 1)) {
-                //         urlFiles += ',';
-                //     }
-                // }
-                //
-                // $(e).next().next().val(urlFiles);
-        //     }
-        // };
-        // window.open('/kcfinder-master/browse.php?type=images&dir=images/public',
-        //     'kcfinder_multiple', 'status=0, toolbar=0, location=0, menubar=0, ' +
-        //     'directories=0, resizable=1, scrollbars=0, width=800, height=600'
-        // );
-    }
+    $('input[type=file][sub=image]').on('change', function () {
+        let url = URL.createObjectURL(event.target.files[0]) ;
+        var img = new Image();
+        img.src = url;
+        $(this).next().attr("src",url);
+        $(this).next().next().val(url);
+    })
+
+    $('input[type=file][sub=multiple]').on('change', function () {
+        $(this).next().empty();
+        let files = event.target.files;
+        console.log(files)
+        for (var i = 0; i < files.length; i++){
+            let url = URL.createObjectURL(files[i])
+            let img = '<img src="'+ url +'" width="80" height="70" style="margin-left: 5px; margin-bottom: 5px;">';
+            $(this).next().append(img)
+            console.log(url, img)
+        }
+    })
+
+    $(document).ready(function () {
+        let images = document.getElementsByTagName('img')
+        console.log(window.location.href)
+        for (image of images) {
+            if(image.src.length > window.location.href.length ){
+
+            }else{
+                image.src = "/library/file.png" // set the src to that URL
+                console.log()
+
+            }
+        }
+
+    })
+
 </script>
 {{--@if (!empty($domainUser))--}}
 {{--	<?php--}}
