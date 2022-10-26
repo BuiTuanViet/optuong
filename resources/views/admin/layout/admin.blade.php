@@ -162,66 +162,75 @@
     });
     
 
-    function uploadImage(e) {
-        window.KCFinder = {
-           callBack: function(url) {window.KCFinder = null;
-                var img = new Image();
-                img.src = url;
-                $(e).next().attr("src",url);
-                $(e).next().next().val(url);
-            }
-        };
-        window.open('/kcfinder-master/browse.php?type=images&dir=images/public',
-            'kcfinder_image', 'status=0, toolbar=0, location=0, menubar=0, ' +
-            'directories=0, resizable=1, scrollbars=0, width=800, height=600'
-        );
-    }
-    function openKCFinder(e) {
-        window.KCFinder = {
-            callBackMultiple: function(files) {
-                window.KCFinder = null;
-                var urlFiles = "";
-                $(e).next().empty();
-                for (var i = 0; i < files.length; i++){
-                    $(e).next().append('<img src="'+ files[i] +'" width="80" height="70" style="margin-left: 5px; margin-bottom: 5px;"/>')
-                    urlFiles += files[i] ;
-                    if (i < (files.length - 1)) {
-                        urlFiles += ',';
-                    }
-                }
+    $('input[type=file][name=image]').on('change', function () {
+        let url = URL.createObjectURL(event.target.files[0]) ;
+        var img = new Image();
+        img.src = url;
+        console.log(url, img)
 
-                $(e).next().next().val(urlFiles);
+        $(this).next().attr("src",url);
+        $(this).next().next().val(url);
+    })
+
+    $('input[type=file][sub=image]').on('change', function () {
+        let url = URL.createObjectURL(event.target.files[0]) ;
+        var img = new Image();
+        img.src = url;
+        $(this).next().attr("src",url);
+        $(this).next().next().val(url);
+    })
+
+    $('input[type=file][sub=multiple]').on('change', function () {
+        $(this).next().empty();
+        let files = event.target.files;
+        console.log(files)
+        for (var i = 0; i < files.length; i++){
+            let url = URL.createObjectURL(files[i])
+            let img = '<img src="'+ url +'" width="80" height="70" style="margin-left: 5px; margin-bottom: 5px;">';
+            $(this).next().append(img)
+            console.log(url, img)
+        }
+    })
+
+    $(document).ready(function () {
+        let images = document.getElementsByTagName('img')
+        console.log(window.location.href)
+        for (image of images) {
+            if(image.src.length > window.location.href.length ){
+
+            }else{
+                image.src = "/library/file.png" // set the src to that URL
+                console.log()
+
             }
-        };
-        window.open('/kcfinder-master/browse.php?type=images&dir=images/public',
-            'kcfinder_multiple', 'status=0, toolbar=0, location=0, menubar=0, ' +
-            'directories=0, resizable=1, scrollbars=0, width=800, height=600'
-        );
-    }
+        }
+
+    })
+
 </script>
-@if (!empty($domainUser))
-	<?php
-	$datetime1 = new DateTime();
-	$datetime2 = new DateTime($domainUser->end_at);
-	$interval = $datetime1->diff($datetime2);
-	?>
-	@if ($interval->format('%a') <= 30)
-	<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+{{--@if (!empty($domainUser))--}}
+{{--	<?php--}}
+{{--	$datetime1 = new DateTime();--}}
+{{--	$datetime2 = new DateTime($domainUser->end_at);--}}
+{{--	$interval = $datetime1->diff($datetime2);--}}
+{{--	?>--}}
+{{--	@if ($interval->format('%a') <= 30)--}}
+{{--	<!-- Load Facebook SDK for JavaScript -->--}}
+{{--<div id="fb-root"></div>--}}
+{{--<script>(function(d, s, id) {--}}
+{{--  var js, fjs = d.getElementsByTagName(s)[0];--}}
+{{--  if (d.getElementById(id)) return;--}}
+{{--  js = d.createElement(s); js.id = id;--}}
+{{--  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';--}}
+{{--  fjs.parentNode.insertBefore(js, fjs);--}}
+{{--}(document, 'script', 'facebook-jssdk'));</script>--}}
 
-<!-- Your customer chat code -->
-<div class="fb-customerchat"
-  attribution="setup_tool"
-  page_id="1556924511289480">
-</div>
-	 @endif
-@endif
+{{--<!-- Your customer chat code -->--}}
+{{--<div class="fb-customerchat"--}}
+{{--  attribution="setup_tool"--}}
+{{--  page_id="1556924511289480">--}}
+{{--</div>--}}
+{{--	 @endif--}}
+{{--@endif--}}
 </body>
 </html>

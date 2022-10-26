@@ -14,7 +14,7 @@
             <li><a href="#">Thêm mới Bộ lọc</a></li>
         </ol>
     </section>
-    <form role="form" action="{{ route('filter.store') }}" method="post">
+    <form role="form" action="{{ route('filter.store') }}" method="POST"  enctype="multipart/form-data">
         {!! csrf_field() !!}
         {{ method_field('POST') }}
     <section class="content">

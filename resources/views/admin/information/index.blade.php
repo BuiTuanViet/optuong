@@ -17,7 +17,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('information.store') }}" method="POST">
+            <form role="form" action="{{ route('information.store') }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('POST') }}
 
@@ -33,32 +33,32 @@
                             </div>
                             <div class="box-body">
                                 <div class="form-group">
-                                    <input type="hidden" value="{{ $typeinformation->slug }}" name="slug_type_input[]"/>
 
                                     @if ($typeinformation->type_input == 'one_line')
+                                        <input type="hidden" value="{{ $typeinformation->slug }}" name="slug_type_input[]"/>
                                         <input type="text" class="form-control" name="content[]"
                                                placeholder="{{ $typeinformation->placeholder }}"
                                                value="{{ $typeinformation->information }}"/>
                                     @endif
 
                                     @if ($typeinformation->type_input == 'multi_line')
+                                            <input type="hidden" value="{{ $typeinformation->slug }}" name="slug_type_input[]"/>
                                         <textarea rows="4" class="form-control" name="content[]"
                                                   placeholder="{{ $typeinformation->placeholder }}">{{ $typeinformation->information }}</textarea>
                                     @endif
 
                                     @if ($typeinformation->type_input == 'editor')
-                                        <textarea class="editor" id="{{$typeinformation->slug}}" name="content[]"
-                                                  rows="10" cols="80"
-                                                  placeholder="{{ $typeinformation->placeholder }}"/>{{ $typeinformation->information }}</textarea>
+                                            <input type="hidden" value="{{ $typeinformation->slug }}" name="slug_type_input[]"/>
+                                            <textarea class="editor" id="{{$typeinformation->slug}}" name="content[]" rows="10" cols="80" placeholder="{{ $typeinformation->placeholder }}"/>{{ $typeinformation->information }}</textarea>
                                     @endif
 
                                     @if ($typeinformation->type_input == 'image')
                                         <div>
-                                            <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                            <input type="file" sub="image" name="image[{{$typeinformation->slug}}]" accept="image/*"
                                                    size="20"/>
                                             <img src="{{ $typeinformation->information }}" width="80" height="70"/>
-                                            <input name="content[]" type="hidden"
-                                                   value="{{ $typeinformation->information }}"/>
+{{--                                            <input name="content[]" type="hidden"--}}
+{{--                                                   value="{{ $typeinformation->information }}"/>--}}
                                         </div>
                                     @endif
                                 </div>

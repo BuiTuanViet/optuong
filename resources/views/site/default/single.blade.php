@@ -43,7 +43,7 @@
             <ul class="list-news-other">
                 <li><a class="text-decoration-none" href="{{ route('post', ['cate_slug' =>  $category->slug, 'post_slug' => $post->slug]) }}"
                        title="So sánh sàn gỗ nhựa ngoài trời và sàn gỗ tự nhiên">
-                        {{ isset($nextPost->title) ? $nextPost->title : '' }} - {{ date("d/m/Y H:i", strtotime($nextPost->updated_at)) }} </a></li>
+                        {{ isset($nextPost->title) ? $nextPost->title : '' }} - {{ isset($nextPost->updated_at) ? date("d/m/Y H:i", strtotime($nextPost->updated_at)) : '' }} </a></li>
             </ul>
             <div class="pagination-home"></div>
         </div>

@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label>Danh sách hình ảnh</label>
-                            <input type="button" onclick="return openKCFinder(this);" value="Chọn ảnh"
+                            <input type="file" onChange="return openKCFinder(this);" multiple  value="Chọn ảnh"
                                    size="20"/>
                             <div class="imageList">
                                 @if (isset($postFacebook->images))

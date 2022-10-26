@@ -18,7 +18,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('categories.update', ['category_id' => $category->category_id]) }}" method="POST">
+            <form role="form" action="{{ route('categories.update', ['category_id' => $category->category_id]) }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="col-xs-12 col-md-8">
@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
                                        size="20"/>
                                 <img src="{{$category->image}}" width="80" height="70"/>
                                 <input name="image" type="hidden" value="{{$category->image}}"/>
@@ -107,7 +107,7 @@
                                     @endif
 
                                     @if($typeInput->type_input == 'image')
-                                        <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                        <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
                                                size="20"/>
                                         <img src="{{ $category[$typeInput->slug] }}" width="80" height="70"/>
                                         <input name="{{$typeInput->slug}}" type="hidden" value="{{ $category[$typeInput->slug] }}"/>
@@ -118,7 +118,7 @@
                                     @endif
 
                                     @if($typeInput->type_input == 'image_list')
-                                        <input type="button" onclick="return openKCFinder(this);" value="Chọn ảnh"
+                                        <input type="file" onChange="return openKCFinder(this);" multiple  value="Chọn ảnh"
                                                size="20"/>
                                         <div class="imageList">
                                             @if(!empty($category[$typeInput->slug]))

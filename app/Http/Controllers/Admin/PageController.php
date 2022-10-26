@@ -101,20 +101,23 @@ class PageController extends AdminController
             }
 
             $post = new Post();
-            $postId = $post->insertGetId([
+            $data =[
                 'title' => $request->input('title'),
                 'post_type' => 'page',
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
                 'tags' => $request->input('tags'),
-                'image' =>  $request->input('image'),
                 'content' =>  $request->input('content'),
                 'visiable' => 0,
                 'meta_title' => $request->input('meta_title'),
                 'meta_description' => $request->input('meta_description'),
                 'meta_keyword' => $request->input('meta_keyword'),
                 'product_list' => !empty($request->input('product_list')) ? implode(',', $request->input('product_list')) : '',
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+            $postId = $post->insertGetId($data);
 
             // insert slug
             $postWithSlug = $post->where('slug', $slug)->first();
@@ -228,21 +231,23 @@ class PageController extends AdminController
             if (empty($slug)) {
                 $slug = Ultility::createSlug($request->input('title'));
             }
-
-            $post->update([
+            $data = [
                 'title' => $request->input('title'),
                 'post_type' => 'page',
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
                 'tags' => $request->input('tags'),
-                'image' =>  $request->input('image'),
                 'content' =>  $request->input('content'),
                 'visiable' => 0,
                 'meta_title' => $request->input('meta_title'),
                 'meta_description' => $request->input('meta_description'),
                 'meta_keyword' => $request->input('meta_keyword'),
                 'product_list' => !empty($request->input('product_list')) ? implode(',', $request->input('product_list')) : '',
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+            $post->update($data);
 
             // insert slug
             $postWithSlug = Post::where('slug', $slug)

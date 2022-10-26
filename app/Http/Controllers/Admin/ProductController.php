@@ -295,7 +295,6 @@ class ProductController extends AdminController
             if (!$postExist) {
                 return redirect('admin/products');
             }
-
             $userId = 0;
             $post = Post::where('post_id', $product->post_id)->first();
 
@@ -313,20 +312,24 @@ class ProductController extends AdminController
             }
 
             // update to database
-            $post->update([
+            $dataUpdate = [
                 'title' => $request->input('title'),
                 'post_type' => 'product',
                 'template' => $request->input('template'),
                 'description' => $request->input('description'),
                 'tags' => $request->input('tags'),
-                'image' => $request->input('image'),
                 'content' => $request->input('content'),
                 'visiable' => 0,
                 'category_string' => !empty($categories) ? implode(',', $categories) : '',
                 'meta_title' => $request->input('meta_title'),
                 'meta_description' => $request->input('meta_description'),
                 'meta_keyword' => $request->input('meta_keyword'),
-            ]);
+            ];
+
+            if ($request->hasFile('image')){
+                $dataUpdate['image'] = Ultility::saveFile($request, 'image');
+            }
+            $post->update($dataUpdate);
 
             // insert slug
             $postWithSlug = Post::where('slug', $slug)
@@ -367,15 +370,13 @@ class ProductController extends AdminController
                 $discountEnd = $discountTime[1];
 
             }
-
-            $product->update([
+            $dataProduct = [
                 'price' => !empty($request->input('price')) ? str_replace(".", "", $request->input('price')) : 0,
                 'origin_price' => !empty($request->input('origin_price')) ? str_replace(".", "", $request->input('origin_price')) : 0,
                 'code' => $request->input('code'),
                 'discount' => !empty($request->input('discount')) ? str_replace(".", "", $request->input('discount')) :0 ,
                 'discount_start' => !empty($discountStart) ? new \DateTime($discountStart) : null,
                 'discount_end' => !empty($discountEnd) ? new \DateTime($discountEnd) : null,
-                'image_list' => $request->input('image_list'),
                 'properties' => $request->input('properties'),
                 'deal_end' =>  new \DateTime($request->input('deal_end')),
                 'price_deal' =>  !empty($request->input('price_deal')) ? str_replace(".", "", $request->input('price_deal')) : 0,
@@ -383,7 +384,12 @@ class ProductController extends AdminController
                 'buy_after' => !empty($request->input('buy_after')) ? implode(',', $request->input('buy_after')) : null,
                 'filter' => !empty($request->input('filter')) ? implode(',', $request->input('filter')) : null
 
-            ]);
+            ];
+            if ($request->hasFile('image_list')){
+                $dataProduct['image_list'] = Ultility::saveMoreFile($request, 'image_list');
+            }
+
+            $product->update($dataProduct);
             // insert input
             $typeInputDatabase = TypeInput::orderBy('type_input_id')
                 ->get();

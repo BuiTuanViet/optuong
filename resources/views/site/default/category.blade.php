@@ -8,7 +8,7 @@
 @section('meta_url', '/danh-muc/'.$category->slug)
 
 @section('content')
-    <div class="wrap-main  w-clear">
+    <div class="wrap-main w-clear">
         <div class="title-main"><span>{{ isset($category['title']) ? $category['title'] : ''  }}</span></div>
         <div class="content-main css_flex_baiviet">
             @if(count($posts) > 0 )

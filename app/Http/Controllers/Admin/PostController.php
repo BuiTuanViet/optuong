@@ -118,13 +118,12 @@ class PostController extends AdminController
             }
 
             $post = new Post();
-            $postId = $post->insertGetId([
+            $postData = [
                 'title' => $request->input('title'),
                 'post_type' => 'post',
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
                 'tags' => $request->input('tags'),
-                'image' =>  $request->input('image'),
                 'content' =>  $request->input('content'),
                 'visiable' => 0,
                 'category_string' => !empty($categories) ? implode(',', $categories) : '',
@@ -132,7 +131,12 @@ class PostController extends AdminController
                 'meta_description' => $request->input('meta_description'),
                 'meta_keyword' => $request->input('meta_keyword'),
                 'product_list' => !empty($request->input('product_list')) ? implode(',', $request->input('product_list')) : '',
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $postData['image'] = Ultility::saveFile($request, 'image');
+            }
+
+            $postId = $post->insertGetId($postData);
 
             // insert slug
             $postWithSlug = $post->where('slug', $slug)->first();
@@ -287,13 +291,13 @@ class PostController extends AdminController
                     $categories[] =  $cate->title;
                 }
             }
-            $post->update([
+
+            $postData = [
                 'title' => $request->input('title'),
                 'post_type' => 'post',
                 'template' =>  $request->input('template'),
                 'description' => $request->input('description'),
                 'tags' => $request->input('tags'),
-                'image' =>  $request->input('image'),
                 'content' =>  $request->input('content'),
                 'visiable' => 0,
                 'category_string' => !empty($categories) ? implode(',', $categories) : '',
@@ -301,7 +305,11 @@ class PostController extends AdminController
                 'meta_description' => $request->input('meta_description'),
                 'meta_keyword' => $request->input('meta_keyword'),
                 'product_list' => !empty($request->input('product_list')) ? implode(',', $request->input('product_list')) : '',
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $postData['image'] = Ultility::saveFile($request, 'image');
+            }
+            $post->update($postData);
 
             // insert slug
             $postWithSlug = Post::where('slug', $slug)

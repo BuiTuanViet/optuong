@@ -18,7 +18,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('group-theme.update', ['group_id' => $groupTheme->group_id]) }}" method="POST">
+            <form role="form" action="{{ route('group-theme.update', ['group_id' => $groupTheme->group_id]) }}" method="POST"  enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="col-xs-12 col-md-6">
@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
                                        size="20"/>
                                 <img src="{{ $groupTheme->image }}" width="80" height="70"/>
                                 <input name="image" type="hidden" value="{{ $groupTheme->image }}"/>

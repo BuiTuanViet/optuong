@@ -85,13 +85,16 @@ class UserController extends AdminController
 
             // insert to database
             $user = new User();
-            $userId = $user->insertGetId([
+            $data = [
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
                 'phone' => $request->input('phone'),
-                'image' => $request->input('image'),
                 'name' => $request->input('name'),
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+            $userId = $user->insertGetId($data);
 
         } catch (\Exception $e) {
             Error::setErrorMessage('Lỗi xảy ra khi thêm mới thành viên: dữ liệu không hợp lệ.');
@@ -151,12 +154,15 @@ class UserController extends AdminController
                 ]);
             }
             // insert to database
-            $user->update([
+            $data = [
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
-                'image' => $request->input('image'),
                 'name' => $request->input('name'),
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $data['image'] = Ultility::saveFile($request, 'image');
+            }
+            $user->update($data);
 
         } catch (\Exception $e) {
             Error::setErrorMessage('Lỗi xảy ra khi chỉnh sửa thành viên: dữ liệu không hợp lệ.');

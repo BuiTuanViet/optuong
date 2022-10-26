@@ -103,7 +103,7 @@
                         <h3 class="box-title">Ghi chú quản trị</h3>
                     </div>
                     <div class="box-body">
-                        <form action="{{ route('orderUpdateStatus') }}" method="post">
+                        <form action="{{ route('orderUpdateStatus') }}" method="POST"  enctype="multipart/form-data">
                             {!! csrf_field() !!}
                             <select name="status" class="
                                 <?php switch ($order->status) {

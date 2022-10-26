@@ -18,7 +18,7 @@
     <section class="content">
         <div class="row">
             <!-- form start -->
-            <form role="form" action="{{ route('products.update', ['product_id' => $product->product_id]) }}" method="POST">
+            <form role="form" action="{{ route('products.update', ['product_id' => $product->product_id]) }}" method="POST" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="col-xs-12 col-md-8">
@@ -59,10 +59,10 @@
                             </div>
                             
                             <div class="form-group">
-                                <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                <input type="file" name="image" accept="image/*" value="Chọn ảnh"
                                        size="20"/>
                                 <img src="{{ $post->image }}" width="80" height="70"/>
-                                <input name="image" type="hidden" value="{{ $post->image }}"/>
+{{--                                <input name="image" type="hidden" value="{{ $post->image }}"/>--}}
                             </div>
 
                             <div class="form-group" style="color: red;">
@@ -130,7 +130,6 @@
                                     </div>
                                 @endforeach
                             @endforeach
-
                         </div>
                     </div>
 
@@ -208,8 +207,8 @@
 
                             <div class="form-group">
                                 <label>Danh sách hình ảnh</label>
-                                <input type="button" onclick="return openKCFinder(this);" value="Chọn ảnh"
-                                       size="20"/>
+                                <input type="file" name="image_list[]" sub="multiple"  value="Chọn ảnh" accept="image/*"
+                                       size="20" multiple />
                                 <div class="imageList">
                                     @if(!empty($product->image_list))
                                         @foreach(explode(',',$product->image_list) as $image)
@@ -217,7 +216,7 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <input name="image_list" type="hidden" value="{{$product->image_list}}"/>
+{{--                                <input name="image_list" type="hidden" value="{{$product->image_list}}"/>--}}
                             </div>
 
                         </div>
@@ -240,7 +239,7 @@
                                     @endif
 
                                     @if($typeInput->type_input == 'image')
-                                        <input type="button" onclick="return uploadImage(this);" value="Chọn ảnh"
+                                        <input type="file" name="image" accept="image/*"  value="Chọn ảnh"
                                                size="20"/>
                                         <img src="{{ $post[$typeInput->slug] }}" width="80" height="70"/>
                                         <input name="{{$typeInput->slug}}" type="hidden" value="{{ $post[$typeInput->slug] }}"/>
