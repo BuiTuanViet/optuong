@@ -125,27 +125,29 @@ class InformationController extends AdminController
                 ]);
             }
             // Lưu ảnh
-            foreach($request->image as  $id => $image) {
-                $information = Information::where('slug_type_input', $id)->first();
-                // insert information
-                if (empty($information)) {
-                    $information = new Information();
-                    $information->insert([
-                        'slug_type_input' => $slugTypeInput,
+            if($request->image){
+                foreach($request->image as  $id => $image) {
+                    $information = Information::where('slug_type_input', $id)->first();
+                    // insert information
+                    if (empty($information)) {
+                        $information = new Information();
+                        $information->insert([
+                            'slug_type_input' => $slugTypeInput,
+                            'content' => Ultility::saveFileInformation($image),
+                        ]);
+
+                        continue;
+                    }
+                    //update information
+                    $information->update([
                         'content' => Ultility::saveFileInformation($image),
                     ]);
-
-                    continue;
                 }
-                //update information
-                $information->update([
-                    'content' => Ultility::saveFileInformation($image),
-                ]);
             }
-
             return redirect('admin/information');
         } catch (\Exception $e) {
             Log::error('http->admin->InformationController->store: cập nhật thông tin');
+            Log::error($e->getMessage()." - ". $e->getFile()."-". $e->getLine());
             Error::setErrorMessage('cập nhật thông tin lỗi: dữ liệu nhập vào không hợp lệ.');
 
             return redirect('admin/information');

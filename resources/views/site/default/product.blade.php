@@ -21,10 +21,10 @@
             </ol>
         </div>
     </div>
-    <div class="wrap-main  w-clear">
+
+    <div class="wrap-main w-clear">
         <div class="grid-pro-detail w-clear">
             <div class="left-pro-detail w-clear">
-
                 <a id="Zoom-1" class="MagicZoom"
                    data-options="zoomMode: off; hint: off; rightClick: true; selectorTrigger: hover; expandCaption: false; history: false;"
                    href="{{ $product->image }}"

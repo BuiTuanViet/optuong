@@ -140,9 +140,6 @@
     <script type="text/javascript" src="{{ asset('/assets/js/phantrang_ajax.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/assets/js/apps.js') }}"></script>
 
-
-
-
     <script>
         $(document).ready(function () {
 
