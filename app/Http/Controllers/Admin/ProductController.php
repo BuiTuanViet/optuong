@@ -120,7 +120,7 @@ class ProductController extends AdminController
             }
             // insert to database
             $post = new Post();
-            $postId = $post->insertGetId([
+            $dataUpdate = [
                 'title' => $request->input('title'),
                 'post_type' => 'product',
                 'template' =>  $request->input('template'),
@@ -134,7 +134,12 @@ class ProductController extends AdminController
                 'meta_description' => $request->input('meta_description'),
                 'meta_keyword' => $request->input('meta_keyword'),
 
-            ]);
+            ];
+            if ($request->hasFile('image')){
+                $dataUpdate['image'] = Ultility::saveFile($request, 'image');
+            }
+
+            $postId = $post->insertGetId($dataUpdate);
 
             // insert slug
             $postWithSlug = $post->where('slug', $slug)->first();

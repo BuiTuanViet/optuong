@@ -253,6 +253,12 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
     position: relative;
 }
 
+.wap_1000 {
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+}
+
 .grecaptcha-badge, .grecaptcha-logo, .grecaptcha-badge iframe {
     display: none !important;
     opacity: 0;
@@ -3288,7 +3294,7 @@ coccocgrammar {
 }
 
 div.box-sanpham-tc {
-    padding: 30px 0;
+    padding: 15px 0;
     /*background: url(../images/ff.png) left bottom repeat-x;*/
 }
 
@@ -3626,7 +3632,7 @@ div#danhmuc ul li ul li ul li ul li ul li a {
 }
 
 .pic-newsda {
-    height: 20em;
+    height: 15em;
 }
 
 .info-newsda {
@@ -3703,7 +3709,7 @@ div#danhmuc ul li ul li ul li ul li ul li a {
 .pic-productc1 {
     background: #fff;
     border: 1px solid #e6e6e6;
-    height: 20em;
+    height: 15em;
 }
 
 .pic-productc1 img {

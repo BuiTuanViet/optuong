@@ -68,17 +68,33 @@
                             {!! $product->content !!}
                         </div>
                     </div>
-                    <div class="block-page-common block-title-cm clearfix block-related">
+                    <div class="block-page-common block-title-cm clearfix block-related mb-5">
                         <div class="block-content">
-                            <div class="block-title"><h2 class="fs18">Sản Phẩm khác</h2></div>
+                            <div class="block-title">
+                                <h2 class="fs18">Sản Phẩm khác</h2></div>
                             <div class="box_sp1 row">
                                 @foreach(\App\Entity\Product::showAllProduct(4) as $id => $item)
-                                <a class="productc1 text-decoration-none w-clear" href="{{ route('product', [ 'post_slug' => $item['slug']]) }}" title="{{ $item['title'] }}"
-                                   title="{{ isset($item['title']) ?  $item['title'] :'' }}">
-                                    <h3 class="name-productc1 text-split">{{ isset($item['title']) ?  $item['title'] :'' }}</h3>
-                                    <p class="pic-productc1 scale-img"><img src="{{ isset($item['image']) ?  $item['image'] :'' }}"></p>
-                                    <span class="view-productc1">Chi tiết</span>
-                                </a>
+                                    <div class="col-md-3">
+                                        <div class="box-product">
+                                            <a class="productc1 text-decoration-none w-clear"
+                                               href="{{ route('product', ['slug' => $item->slug]) }}"
+                                               title="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                                <p class="pic-productc1 scale-img">
+                                                    <img
+                                                            src="{{ isset($item['image']) ? $item['image'] : '' }}"
+                                                            alt="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                                </p>
+                                                <div class="description">
+                                                    <h3 class="name-productc1 text-split">{{ isset($item['title']) ? $item['title'] : '' }}</h3>
+                                                    <span class="view-productc1">
+                                                        Chi tiết
+                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                    </span>
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

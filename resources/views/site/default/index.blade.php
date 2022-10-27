@@ -271,7 +271,7 @@
                                             <div class="line" style="width: 50px; background: #ff764c;height: 2px; margin: auto">
                                             </div>
                                             <p class="desc-newsda text-split pb-2 text-left pt-2    ">
-                                                {{ Illuminate\Support\Str::limit(isset($item['description']) ? $item['description'] : '', 50, ' (...)') }}
+                                                {{ \App\Ultility\Ultility::textLimit(isset($item['description']) ? $item['description'] : '', 50, ' (...)') }}
                                             </p>
                                             <a href="{{ route('post', ['cateSlug' => 'tin-tuc', 'slug' => $item->slug]) }}"
                                                class="btn btn-sm" style="background: #ff764c; color: #fff">
