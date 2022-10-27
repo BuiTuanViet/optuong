@@ -72,6 +72,49 @@ class Product extends Model
         }
     }
 
+    public static function showAllProduct($countPost = 5) {
+        try {
+            $postModel =  new Post();
+
+            $products =  $postModel::where('posts.post_type', 'product')
+                ->join('category_post', 'posts.post_id', '=', 'category_post.post_id')
+                ->join('categories', 'category_post.category_id', '=', 'categories.category_id')
+                ->join('products', 'products.post_id', '=', 'posts.post_id')
+                ->select(
+                    'posts.*',
+                    'products.product_id',
+                    'products.code',
+                    'products.price',
+                    'products.discount',
+                    'products.price_deal',
+                    'products.discount_start',
+                    'products.discount_end',
+                    'products.price_deal',
+                    'products.deal_end',
+                    'products.properties'
+                )
+                ->where('visiable', 0)
+                ->orderBy('posts.post_id', 'desc')
+                ->offset(0)
+                ->where('category_post.deleted_at', null)
+                ->limit($countPost)->distinct()->get();
+
+            foreach ($products as $id => $product) {
+                $inputs = Input::where('post_id', $product->post_id)->get();
+                foreach ($inputs as $input) {
+                    $products[$id][$input->type_input_slug] = $input->content;
+                }
+            }
+
+            return $products;
+        } catch (\Exception $e) {
+            Log::error('Entity->Product->showProduct: Hiển thị sản phẩm');
+
+            return array();
+        }
+
+    }
+
     public static function showProduct($slug, $countPost = 5) {
         try {
 			$postModel =  new Post();

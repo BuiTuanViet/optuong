@@ -30,7 +30,7 @@
             </div>
             </div>
 
-            <div class="footer-right">
+            <div class="footer-right p-3">
                 <div id="footer-map">
                     {!! isset($information['nhung-ban-do']) ? $information['nhung-ban-do'] : '' !!}
                 </div>
@@ -46,4 +46,5 @@
         <div id="fb-customer-chat" class="fb-customerchat">
         </div>
     </div>
+</div>
 </div>

@@ -26,16 +26,25 @@
                 <div class="content-main css_flex_product">
                     @if(count($products) > 0 )
                         @foreach($products as $id => $item)
-                            <div class=" col-md-3">
-                                <a class="box-product text-decoration-none"
-                                   href="{{ route('product', ['slug' => $item['slug']]) }}"
-                                   title="{{ isset($item['title']) ? $item['title'] : '' }}">
-                                    <h3 class="name-product text-split">{{ isset($item['title']) ? $item['title'] : '' }}</h3>
-                                    <p class="pic-product scale-img"><img
-                                                src="{{ isset($item['image']) ? $item['image'] : '' }}"
-                                                alt="{{ isset($item['title']) ? $item['title'] : '' }}">
-                                    </p>
-                                </a>
+                            <div class="col-md-3 mb-5">
+                                <div class="box-product">
+                                    <a class="productc1 text-decoration-none w-clear"
+                                       href="{{ route('product', ['slug' => $item->slug]) }}"
+                                       title="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                        <p class="pic-productc1 scale-img">
+                                            <img
+                                                    src="{{ isset($item['image']) ? $item['image'] : '' }}"
+                                                    alt="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                        </p>
+                                        <div class="description">
+                                            <h3 class="name-productc1 text-split">{{ isset($item['title']) ? $item['title'] : '' }}</h3>
+                                            <span class="view-productc1">
+                                                        Chi tiết
+                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                    </span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         @endforeach
                         <div class="clear"></div>

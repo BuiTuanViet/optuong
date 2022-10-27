@@ -213,21 +213,32 @@
             <div class="box-sanpham-tc">
                 <div class="wap_1200 w-clear">
                     <div class="row">
-                        <div class="box_item pt-3">
+                        <div class="box_item py-3">
                             <div class="tdtc"><span> {{ $itemCate['title'] }}</span></div>
                             <div class="tdctc"><span> </span></div>
                             <div class="box_sp1">
                                 @foreach(\App\Entity\Product::showProduct($itemCate['slug'], 4) as $id => $item)
-                                    <a class="productc1 text-decoration-none w-clear"
-                                       href="{{ route('product', ['slug' => $item->slug]) }}"
-                                       title="Tấm ốp tường đa năng">
-                                        <h3 class="name-productc1 text-split">{{ $id + 1 }}
-                                            .{{ isset($item['title']) ? $item['title'] : '' }}</h3>
-                                        <p class="pic-productc1 scale-img"><img
-                                                    src="{{ isset($item['image']) ? $item['image'] : '' }}"
-                                                    alt="{{ isset($item['title']) ? $item['title'] : '' }}"></p>
-                                        <span class="view-productc1">Chi tiết</span>
-                                    </a>
+                                    <div class="col-md-3">
+                                        <div class="box-product">
+                                            <a class="productc1 text-decoration-none w-clear"
+                                               href="{{ route('product', ['slug' => $item->slug]) }}"
+                                               title="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                                <p class="pic-productc1 scale-img">
+                                                    <img
+                                                            src="{{ isset($item['image']) ? $item['image'] : '' }}"
+                                                            alt="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                                </p>
+                                                <div class="description">
+                                                    <h3 class="name-productc1 text-split">{{ isset($item['title']) ? $item['title'] : '' }}</h3>
+                                                    <span class="view-productc1">
+                                                        Chi tiết
+                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                    </span>
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -243,21 +254,33 @@
 
                         <div class="tdctc">Mô tả thi công</div>
 
-                        <div class="box_sp1">
+                        <div class="box_sp1 pb-3">
                             @foreach(\App\Entity\Post::newPost('tin-tuc', 8) as $id => $item)
-                                <a class="newsda text-decoration-none w-clear"
-                                   href="{{ route('post', ['cateSlug' => 'tin-tuc', 'slug' => $item->slug]) }}"
-                                   title="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                <div class="col-md-3">
+                                    <div class="box-product pb-3">
+                                    <a class="newsda text-decoration-none w-clear"
+                                       href="{{ route('post', ['cateSlug' => 'tin-tuc', 'slug' => $item->slug]) }}"
+                                       title="{{ isset($item['title']) ? $item['title'] : '' }}">
 
-                                    <p class="pic-newsda scale-img"><img
-                                                src="{{ isset($item['image']) ? $item['image'] : '' }}"
-                                                alt="{{ isset($item['title']) ? $item['title'] : '' }}"></p>
-
-                                    <div class="info-newsda">
-                                        <h3 class="name-newsda text-split">{{ isset($item['title']) ? $item['title'] : '' }}</h3>
-                                        <p class="desc-newsda text-split"></p>
+                                        <p class="pic-newsda scale-img"><img
+                                                    src="{{ isset($item['image']) ? $item['image'] : '' }}"
+                                                    alt="{{ isset($item['title']) ? $item['title'] : '' }}">
+                                        </p>
+                                        <div class="info-newsda px-2">
+                                            <h3 class="name-newsda text-split">{{ isset($item['title']) ? $item['title'] : '' }}</h3>
+                                            <div class="line" style="width: 50px; background: #ff764c;height: 2px; margin: auto">
+                                            </div>
+                                            <p class="desc-newsda text-split pb-2 text-left pt-2    ">
+                                                {{ Illuminate\Support\Str::limit(isset($item['description']) ? $item['description'] : '', 50, ' (...)') }}
+                                            </p>
+                                            <a href="{{ route('post', ['cateSlug' => 'tin-tuc', 'slug' => $item->slug]) }}"
+                                               class="btn btn-sm" style="background: #ff764c; color: #fff">
+                                                Xem thêm
+                                            </a>
+                                        </div>
+                                    </a>
                                     </div>
-                                </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
