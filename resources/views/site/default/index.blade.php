@@ -1,36 +1,10 @@
 @extends('site.layout.site')
 
-@section('title', isset($information['meta_title']) ? $information['meta_title'] : '')
+@section('title', isset($information['meta_title']) ? $information['meta_title'] : 'Trang chủ')
 @section('meta_description', isset($information['meta_description']) ? $information['meta_description'] : '')
 @section('keywords', isset($information['meta_keyword']) ? $information['meta_keyword'] : '')
 
 @section('content')
-{{--    <div class="wap_1200">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-md-3 p-0">--}}
-{{--            </div>--}}
-{{--            <div class="col-md-9 float-right p-0">--}}
-{{--                <div class="slideshow">--}}
-{{--                    <p class="control-slideshow prev-slideshow transition">--}}
-{{--                        <i class="fas fa-chevron-left"></i>--}}
-{{--                    </p>--}}
-{{--                    <div class="owl-carousel owl-theme owl-slideshow">--}}
-{{--                        @foreach(\App\Entity\SubPost::showSubPost('slide', 3) as $id => $item)--}}
-{{--                            <div>--}}
-{{--                                <a href="{{ isset($item['link']) ? $item['link'] : '' }}" target="_blank" title="">--}}
-{{--                                    <img class="lazy"--}}
-{{--                                         data-src="{{ isset($item['image']) ? $item['image'] : '' }}"--}}
-{{--                                         alt="" title=""></a>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
-{{--                    </div>--}}
-{{--                    <p class="control-slideshow next-slideshow transition">--}}
-{{--                        <i class="fas fa-chevron-right"></i>--}}
-{{--                    </p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <div class="section-content relative wap_1200 pt-5">
         <div class="row">
             <div class="box_item p-3">
@@ -285,6 +259,28 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="box_duan bg-white">
+            <div class="wap_1200 w-clear">
+                    <div class="box_item pt-3" >
+                        <div class="tdtc">Cảm nhận khách hàng </div>
+                        <div class="tdctc">Khách hàng cùa chúng tôi</div>
+                        <div class="reaction">
+                            @foreach(\App\Entity\SubPost::showSubPost('cam-nhan-khach-hang', 10) as $id => $item)
+                            <div class="item text-center">
+                                <p class="text-center">
+                                    <img width="100px" src="{{ isset($item['image']) ? $item['image'] : ''}}" alt="">
+                                </p>
+                                <h4>{{ isset($item['title']) ? $item['title'] : ''}}</h4>
+                                <p class="description">
+                                    {{ isset($item['description']) ? $item['description'] : ''}}
+                                </p>
+                            </div>
+                            @endforeach
+                        </div>
+            </div>
             </div>
         </div>
         <div class="wrap-partner">

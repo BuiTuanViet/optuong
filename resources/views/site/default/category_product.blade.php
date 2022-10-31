@@ -58,7 +58,7 @@
                                                     class='page-link' href='{{ $products->url($i) }}'>{{ $i }}</a></li>
                                     @endfor
                                     <li class='page-item'><a class='page-link'
-                                                             href='{{ $products->url($posts->currentPage()+1) }}'><i
+                                                             href='{{ $products->url($products->currentPage()+1) }}'><i
                                                     class="fas fa-caret-right"></i></a></li>
                                 @endif
                             </ul>

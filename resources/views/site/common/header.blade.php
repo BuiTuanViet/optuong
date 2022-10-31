@@ -113,7 +113,7 @@
                     <i class="fas fa-chevron-left"></i>
                 </p>
                 <div class="owl-carousel owl-theme owl-slideshow">
-                    @foreach(\App\Entity\SubPost::showSubPost('slide', 3) as $id => $item)
+                    @foreach(\App\Entity\SubPost::showSubPost('slide', 5) as $id => $item)
                         <div>
                             <a href="{{ isset($item['link']) ? $item['link'] : '' }}" target="_blank" title="">
                                 <img class="lazy"

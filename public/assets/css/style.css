@@ -72,7 +72,8 @@ body {
 img {
     max-width: 100%;
     height: auto;
-    vertical-align: top
+    vertical-align: top;
+    width: 100%;
 }
 
 a, input, textarea {
@@ -644,6 +645,21 @@ p.tieude_right {
     top: 0;
     left: -1px;
     border-left: 1px dashed #ddd;
+}
+
+.row-dashed .has-border:before {
+    position: absolute;
+    content: " ";
+    height: 100%;
+    top: 0;
+    left: -1px;
+    border-left: 1px dashed #ddd;
+}
+.col-md-6.item-post {
+    margin: 10px 0;
+}
+.pic-news{
+    height: 10em;
 }
 
 .icon-box-left .icon-box-img, .icon-box-right .icon-box-img {
