@@ -1,4 +1,4 @@
-@extends('site.layout.site')
+@extends('site.layout.site1')
 
 @section('type_meta', 'article')
 @section('title', isset($product->meta_title) ? $product->meta_title : $product->title )

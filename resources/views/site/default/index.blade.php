@@ -8,8 +8,8 @@
     <div class="section-content relative wap_1200 pt-5">
         <div class="row">
             <div class="box_item p-3">
-                <div class="row row-dashed top-footer" id="row-203053751">
-                    <div id="col-473247603" class="col medium-3 small-6 large-3">
+                <div class="row row-dashed top-footer " id="row-203053751">
+                    <div id="col-473247603" class="col-md-3 col-sm-12">
                         <div class="col-inner">
                             <div class="icon-box featured-box icon-box-left text-left row">
                                 <div class="col-md-4">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="col-262140228" class="col medium-3 small-6 large-3">
+                    <div id="col-262140228" class="col-md-3 col-sm-12">
                         <div class="col-inner">
                             <div class="icon-box featured-box icon-box-left text-left row">
                                 <div class="col-md-4">
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="col-78830378" class="col medium-3 small-6 large-3">
+                    <div id="col-78830378" class="col-md-3 col-sm-12">
                         <div class="col-inner">
                             <div class="icon-box featured-box icon-box-left text-left row">
                                 <div class="col-md-4">
@@ -107,8 +107,6 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="icon-box-text last-reset">
-
-
                                         <p><span style="font-size: 120%; color: #000000;"><span
                                                         style="line-height: 1.5;"><span
                                                             style="color: #008000;">Dịch vụ khách hàng</span><br>
@@ -120,7 +118,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="col-409220389" class="col medium-3 small-6 large-3">
+                    <div id="col-409220389" class="col-md-3 col-sm-12">
                         <div class="col-inner">
                             <div class="icon-box featured-box icon-box-left text-left row">
                                 <div class="col-md-4">
@@ -231,7 +229,7 @@
                         <div class="box_sp1 pb-3">
                             @foreach(\App\Entity\Post::newPost('tin-tuc', 8) as $id => $item)
                                 <div class="col-md-3">
-                                    <div class="box-product pb-3">
+                                    <div class="box-product pb-3 mb-3">
                                     <a class="newsda text-decoration-none w-clear"
                                        href="{{ route('post', ['cateSlug' => 'tin-tuc', 'slug' => $item->slug]) }}"
                                        title="{{ isset($item['title']) ? $item['title'] : '' }}">
@@ -261,6 +259,35 @@
                 </div>
             </div>
         </div>
+
+        <div class="box_duan bg-white">
+            <div class=" w-clear">
+                <div class="box_item pt-3" >
+                    <div class="tdtc">Hình ảnh dự án</div>
+                    <div class="tdctc">Dự án cùa chúng tôi</div>
+                    <div class="project">
+                        @foreach(\App\Entity\SubPost::showSubPost('hinh-anh-du-an', 10) as $id => $item)
+                            <div class="item text-center">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#modalImage{{$id}}">
+                                <div class="image-project" style="background: url('{{ isset($item['image']) ? $item['image'] : ''}}') no-repeat center; background-size: cover; height: 350px;">
+                                </div>
+                                </a>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade modal-lg" id="modalImage{{$id}}" tabindex="-1"
+                                 role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <img src="{{ isset($item['image']) ? $item['image'] : ''}}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="box_duan bg-white">
             <div class="wap_1200 w-clear">

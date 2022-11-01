@@ -1,4 +1,4 @@
-@extends('site.layout.site')
+@extends('site.layout.site1')
 @section('title', request()->word)
 @section('meta_description',  isset($category->description) ? $category->description : '' )
 @section('keywords', '')

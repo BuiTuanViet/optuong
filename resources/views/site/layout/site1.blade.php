@@ -70,7 +70,7 @@
     <link href="{{ asset('assets/magiczoomplus/magiczoomplus.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/owlcarousel2/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/owlcarousel2/owl.theme.default.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style1.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/media.css') }}" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138243386-3">
     </script>
@@ -91,7 +91,7 @@
     </ul>
     <h1 class="hidden-seoh">{{ isset($information['ten-cong-ty']) ? $information['ten-cong-ty'] : ''}}</h1>
 
-    @include('site.common.header')
+    @include('site.common.header1')
     @include('site.common.menu_mobile')
 
     @yield('content')
@@ -311,18 +311,6 @@
                     }
                 ]
             });
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.project').slick({
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                autoplay: true,
-                infinite: true,
-                autoplaySpeed: 2000,
-            });
-
         });
     </script>
 

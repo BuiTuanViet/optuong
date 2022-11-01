@@ -1,4 +1,4 @@
-@extends('site.layout.site')
+@extends('site.layout.site1')
 
 @section('type_meta', 'website')
 @section('title', isset($category['meta_title']) && !empty($category['meta_title']) ? $category['meta_title'] : $category->title)

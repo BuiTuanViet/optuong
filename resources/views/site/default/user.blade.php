@@ -1,4 +1,4 @@
-@extends('site.layout.site')
+@extends('site.layout.site1')
 
 @section('title','Thông tin tài khoản')
 @section('meta_description', isset($information['meta_description']) ? $information['meta_description'] : '')

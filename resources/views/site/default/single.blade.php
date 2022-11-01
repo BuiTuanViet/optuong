@@ -1,4 +1,4 @@
-@extends('site.layout.site')
+@extends('site.layout.site1')
 
 @section('type_meta', 'website')
 @section('title', !empty($post->meta_title) ? $post->meta_title : $post->title)
